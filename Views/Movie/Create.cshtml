@@ -9,63 +9,72 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
 }
 
-<h2>Create</h2>
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<h2 class="my-4">เพิ่มข้อมูลภาพยนตร์ใหม่</h2>
 
-@using (Html.BeginForm("Create", "Movie", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="form-group">
-        @Html.LabelFor(m => m.Title, "ชื่อภาพยนตร์")
-        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "กรอกชื่อภาพยนตร์" })
-        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-    </div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.ReleaseDate, "เข้าฉายเมื่อ")
-        <div class="input-group date" id="dtReleaseDate" data-target-input="nearest">
-            @Html.TextBoxFor(m => m.ReleaseDate, new {
-                @class = "form-control datetimepicker-input",
-                data_target = "#dtReleaseDate",
-                placeholder = "เลือกวันที่เข้าฉาย"
-            })
-            <div class="input-group-append" data-target="#dtReleaseDate" data-toggle="datetimepicker">
-                <div class="input-group-text">
-                    <i class="fa fa-calendar"></i>
+        @using (Html.BeginForm("Create", "Movie", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.Title, "ชื่อภาพยนตร์")
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "กรอกชื่อภาพยนตร์" })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.ReleaseDate, "เข้าฉายเมื่อ")
+                    <div class="input-group date" id="dtReleaseDate" data-target-input="nearest">
+                        @Html.TextBoxFor(m => m.ReleaseDate, new {
+                            @class = "form-control datetimepicker-input",
+                            data_target = "#dtReleaseDate",
+                            placeholder = "เลือกวันที่เข้าฉาย"
+                        })
+                        <div class="input-group-append" data-target="#dtReleaseDate" data-toggle="datetimepicker">
+                            <div class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.ReleaseDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.Genre, "หมวดหมู่")
+                    @Html.DropDownListFor(m => m.Genre, new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Action", Value = "Action" },
+                        new SelectListItem { Text = "Drama", Value = "Drama" },
+                        new SelectListItem { Text = "Adventure", Value = "Adventure" },
+                        new SelectListItem { Text = "Family", Value = "Family" },
+                        new SelectListItem { Text = "Fantasy", Value = "Fantasy" }
+                    }, "กรุณาเลือก", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.Duration, "ความยาว (นาที)")
+                    @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", placeholder = "กรอกความยาว (นาที)", type = "number" })
+                    @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    @Html.Label("fileCoverImg", "รูปภาพ")
+                    <input type="file" id="fileUpload" name="fileUpload" class="form-control" accept="image/*" />
+                    <span class="text-danger" id="fileUploadError"></span>
                 </div>
             </div>
-        </div>
-        @Html.ValidationMessageFor(m => m.ReleaseDate, "", new { @class = "text-danger" })
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Genre, "หมวดหมู่")
-        @Html.DropDownListFor(m => m.Genre, new List<SelectListItem>
-        {
-            new SelectListItem { Text = "Action", Value = "Action" },
-            new SelectListItem { Text = "Drama", Value = "Drama" },
-            new SelectListItem { Text = "Adventure", Value = "Adventure" },
-            new SelectListItem { Text = "Family", Value = "Family" },
-            new SelectListItem { Text = "Fantasy", Value = "Fantasy" }
-        }, "กรุณาเลือก", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "text-danger" })
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mt-3">
+                    <i class="fas fa-save"></i> บันทึก
+                </button>
+            </div>
+        }
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Duration, "ความยาว (นาที)")
-        @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", placeholder = "กรอกความยาว (นาที)", type = "number" })
-        @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.Label("fileCoverImg", "รูปภาพ")
-        <input type="file" id="fileUpload" name="fileUpload" class="form-control" accept="image/*" />
-        <span class="text-danger" id="fileUploadError"></span>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-}
+</div>
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -82,7 +91,6 @@
                 locale: 'en'
             });
 
-            // ✅ jQuery Validate
             $('form').validate({
                 rules: {
                     fileUpload: {

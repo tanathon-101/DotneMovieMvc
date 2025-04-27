@@ -1,8 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "หน้าแรก - Movie Management";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Hero Section -->
+<section class="py-5 bg-dark text-light text-center">
+    <div class="container">
+        <h1 class="display-4 mb-3">🎬 Movie Management System</h1>
+        <p class="lead mb-4">ระบบจัดการข้อมูลภาพยนตร์ด้วย ASP.NET Core MVC + Bootstrap 4</p>
+        <a href="/Movie" class="btn btn-primary btn-lg">
+            <i class="fas fa-film"></i> เริ่มต้นใช้งาน
+        </a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>ฟีเจอร์เด่นของระบบ</h2>
+            <p class="text-muted">ทำให้การบริหารข้อมูลภาพยนตร์ง่ายยิ่งขึ้น</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
+                <h5>เพิ่มข้อมูลหนัง</h5>
+                <p>บันทึกข้อมูลภาพยนตร์ใหม่พร้อมรูปภาพและหมวดหมู่ได้ง่าย ๆ</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-edit fa-3x text-success mb-3"></i>
+                <h5>แก้ไขข้อมูลหนัง</h5>
+                <p>อัปเดตข้อมูลภาพยนตร์ที่มีอยู่ได้รวดเร็ว รองรับการแก้ไขทุกฟิลด์</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-trash-alt fa-3x text-danger mb-3"></i>
+                <h5>ลบข้อมูลหนัง</h5>
+                <p>จัดการลบข้อมูลภาพยนตร์ที่ไม่ต้องการได้ง่าย และปลอดภัย</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-light text-center">
+    <div class="container">
+        <h2 class="mb-3">พร้อมหรือยัง?</h2>
+        <p class="lead mb-4">มาเริ่มจัดการภาพยนตร์ของคุณกันเลย!</p>
+        <a href="/Movie" class="btn btn-light btn-lg">
+            <i class="fas fa-arrow-right"></i> ไปที่ระบบ
+        </a>
+    </div>
+</section>
